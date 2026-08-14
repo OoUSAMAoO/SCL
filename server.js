@@ -3,6 +3,16 @@ const crypto = require('crypto');
 const { Pool } = require('pg');
 const path = require('path');
 
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+app.get("/health", (req, res) => {
+    res.status(200).send("OK");
+});
+
 const app = express();
 app.set('trust proxy', 1);
 app.use(express.json({ limit: '25mb' }));
